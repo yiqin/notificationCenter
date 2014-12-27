@@ -19,13 +19,38 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    
+    // Parse
     [Parse setApplicationId:@"rQw8PH0JVoF8XU0ytZbgDILmDId8hKfbHzgC6gHV"
                   clientKey:@"bo0pbac3W1GmuqTjKXTQPOQbsP6qZeITR9MDcBCh"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"bar";
-    [testObject saveInBackground];
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        
+    } else {
+        [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
+            if (error) {
+                NSLog(@"Anonymous login failed.");
+            } else {
+                NSLog(@"Anonymous user logged in.");
+            }
+        }];
+    }
+    
+    
+    /*
+     let summaryTitle = "A post is created"
+     let summaryMessage = "name: \(self.appName) \ntagline:\(self.tagline)"
+     var notification = YQParseObject(className: "Notification")
+     notification.setValue(summaryTitle, forKey: "title")
+     notification.setValue(summaryMessage, forKey: "message")
+     notification.saveInBackgroundWithBlock({ (succeeded:Bool!, error:NSError!) -> Void in
+     if((succeeded) != nil){
+     println("succeed")
+     }
+     })
+     
+     */
     
     
     return YES;

@@ -39,6 +39,8 @@
     
     
     /*
+     // The best way is to seperate the YQParse for notificationCenter....
+     
      let summaryTitle = "A post is created"
      let summaryMessage = "name: \(self.appName) \ntagline:\(self.tagline)"
      var notification = YQParseObject(className: "Notification")

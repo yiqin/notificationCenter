@@ -26,7 +26,7 @@
     
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
-        
+        NSLog(@"Log in before..");
     } else {
         [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
             if (error) {
